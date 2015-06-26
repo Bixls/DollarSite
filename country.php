@@ -38,6 +38,17 @@ class Country {
     	$this->flag=$data['flag'];
     }
 
+    public function getCountry() {
+        array $data = array();
+        $data['name']=$this->name;
+        $data['code']=$this->code;
+        $data['value']=$this->value;
+        $data['curr_full']=$this->curr_full;
+        $data['curr_short']=$this->curr_short;
+        $data['flag']=$this->flag;
+        return $data;
+    }
+
 }
 
 ?>
