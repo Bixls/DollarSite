@@ -26,6 +26,19 @@ public function Create()
   $country->setCountry($country_array);
   update($country);
 }
+
+public function remove($code) {
+  $sql = mysql_query("DELETE FROM Countries WHERE code = $code");
+  $query = mysql_query($sql);
+
+  if ($query) {
+    //sucess
+  }else {
+    //throw an error (failed to delete)
+  }
+}
+
+
 public function Edit()
 {
 
