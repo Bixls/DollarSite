@@ -27,7 +27,30 @@ public function Create()
   update($country);
 }
 
+private function GetCurrency ($c)
+{
+  $json = file_get_contents('http://devel.farebookings.com/api/curconversor/USD/'+$c+'/1/json');
 
+  $data = json_decode($json,true);
+
+  $val = $data[$c];
+
+  return $val;
+}
+
+public function UpdateCurrency ($c) {
+
+  $val = $this->GetCurrency($c);
+
+  $sql = mysql_query("INSERT INTO Countries (Value) Values '"+$val+"' WHERE code LIKE '%".$c."%'") or die (mysql_error());
+
+  $query = mysql_query($sql);
+
+  if (!$query)
+  {
+    return false;
+  }
+}
 }
 
 ?>
