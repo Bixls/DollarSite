@@ -13,7 +13,7 @@ class Country {
     }
 
     public function __construct($c) {
-    	$sql = mysql_query("SELECT * FROM Countries WHERE country_name LIKE '%".$c."%'") or die (mysql_error());
+    	$sql = mysql_query("SELECT * FROM Countries WHERE code LIKE '%".$c."%'") or die (mysql_error());
     	$query = mysql_query($sql);
     	$this->code=$c;
     	if ($query){
