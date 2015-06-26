@@ -27,6 +27,7 @@ public function Create()
   update($country);
 }
 
+
 public function update ($country){
   $country_array = $country->getCountry();
   $code = $country_array["code"];
@@ -38,8 +39,32 @@ public function update ($country){
     $sql = "INSERT INTO MyGuests (code , name , value , curr_full , curr_short , flag)
     VALUES ($country_array["code"], $country_array["name"], $country_array["value"],$country_array["curr_full"],$country_array["curr_short"],$country_array["flag"])";
   }
+
+private function GetCurrency ($c)
+{
+  $json = file_get_contents('http://devel.farebookings.com/api/curconversor/USD/'+$c+'/1/json');
+
+  $data = json_decode($json,true);
+
+  $val = $data[$c];
+
+  return $val;
+
 }
 
+public function UpdateCurrency ($c) {
+
+  $val = $this->GetCurrency($c);
+
+  $sql = mysql_query("INSERT INTO Countries (Value) Values ('"+$val+"') WHERE code LIKE '%".$c."%'") or die (mysql_error());
+
+  $query = mysql_query($sql);
+
+  if (!$query)
+  {
+    return false;
+  }
+}
 }
 
 ?>
