@@ -12,13 +12,13 @@ class Country {
     $this->value=1;
     }
 
-    public function __construct($country_name) {
-    	$sql = mysql_query("SELECT * FROM Countries WHERE country_name LIKE '%".$country_name."%'") or die (mysql_error());
+    public function __construct($c) {
+    	$sql = mysql_query("SELECT * FROM Countries WHERE country_name LIKE '%".$c."%'") or die (mysql_error());
     	$query = mysql_query($sql);
-    	$this->name=$country_name;
+    	$this->code=$c;
     	if ($query){
     		$row = mysql_fetch_array($query);
-    		$this->code=$row['code'];
+    		$this->name=$row['country_name'];
     		$this->value=$row['value'];
     		$this->curr_full=$row['curr_full'];
     		$this->curr_short=$row['curr_short'];
