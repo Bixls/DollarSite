@@ -26,6 +26,19 @@ public function Create()
   $country->setCountry($country_array);
   update($country);
 }
+public function Edit()
+{
+
+  $sql = mysql_query("UPDATE Countries SET name='"+$_POST["name"]+"', code='"+$_POST["code"]+"' , curr_value='"+$_POST["curr_value"]+"' , curr_full='"+$_POST["curr_full"]+"' , curr_short='"+$_POST["curr_short"]+"' , flag='"+$_POST["flag"]+"' WHERE code='"+$_POST["code"]+"'") or die (mysql_error());
+
+  $query = mysql_query($sql);
+
+  if (!$query)
+  {
+    return false;
+  }
+
+}
 
 
 public function update ($country){
@@ -56,7 +69,7 @@ public function UpdateCurrency ($c) {
 
   $val = $this->GetCurrency($c);
 
-  $sql = mysql_query("INSERT INTO Countries (Value) Values ('"+$val+"') WHERE code LIKE '%".$c."%'") or die (mysql_error());
+  $sql = mysql_query("UPDATE Countries SET  value='"+$val+"' WHERE code LIKE '%".$c."%'") or die (mysql_error());
 
   $query = mysql_query($sql);
 
