@@ -1,12 +1,12 @@
 <?php
 
 class Country {
-    var $code;
-    var $name;
-    var $value;
-    var $full_name;
-    var $short_name;
-    var $flag;
+    public $code;
+    public $name;
+    public $value;
+    public $full_name;
+    public $short_name;
+    public $flag;
 }
 
 ?>
