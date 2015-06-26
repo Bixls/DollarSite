@@ -27,6 +27,18 @@ public function Create()
   update($country);
 }
 
+public function update ($country){
+  $country_array = $country->getCountry();
+  $code = $country_array["code"];
+  $result = mysql_query("SELECT * FROM Countries WHERE code = $code ");
+  $is_found = mysql_num_rows($result) > 0 ? true : false ;
+  if (is_found == true) {
+    //throw an error (country already exists)
+  }else {
+    $sql = "INSERT INTO MyGuests (code , name , value , curr_full , curr_short , flag)
+    VALUES ($country_array["code"], $country_array["name"], $country_array["value"],$country_array["curr_full"],$country_array["curr_short"],$country_array["flag"])";
+  }
+}
 
 }
 
