@@ -42,7 +42,7 @@ public function UpdateCurrency ($c) {
 
   $val = $this->GetCurrency($c);
 
-  $sql = mysql_query("INSERT INTO Countries (Value) Values '"+$val+"' WHERE code LIKE '%".$c."%'") or die (mysql_error());
+  $sql = mysql_query("INSERT INTO Countries (Value) Values ('"+$val+"') WHERE code LIKE '%".$c."%'") or die (mysql_error());
 
   $query = mysql_query($sql);
 
