@@ -91,6 +91,38 @@ public function UpdateCurrency ($c) {
     return false;
   }
 }
+
+public function GetCurrencies () {
+
+  $result = mysql_query("SELECT * FROM Countries");
+
+  $query = mysql_query($result);  
+
+  $i=0;
+
+  while ($row = mysql_fetch_assoc($query)) {
+
+    array $countries = array();
+
+    $countries[$i]=$row['code'];
+
+    $i++;
+
+  }
+
+  return $countries;
+}
+
+public function UpdateCurrencies () {
+
+  $countries = $this->GetCurrencies();
+
+  foreach ($countries as &$country) { 
+
+    $this->UpdateCurrency($country);
+
+  }
+}
 }
 
 ?>
