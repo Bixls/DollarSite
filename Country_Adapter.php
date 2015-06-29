@@ -28,7 +28,7 @@ public function Create()
 }
 
 public function remove($code) {
-  $sql = mysql_query("DELETE FROM Countries WHERE code = $code");
+  $sql = mysql_query("DELETE FROM Countries WHERE code = ".$code);
   $query = mysql_query($sql);
 
   if ($query) {
@@ -42,7 +42,7 @@ public function remove($code) {
 public function Edit()
 {
 
-  $sql = mysql_query("UPDATE Countries SET name='"+$_POST["name"]+"', code='"+$_POST["code"]+"' , curr_value='"+$_POST["curr_value"]+"' , curr_full='"+$_POST["curr_full"]+"' , curr_short='"+$_POST["curr_short"]+"' , flag='"+$_POST["flag"]+"' WHERE code='"+$_POST["code"]+"'") or die (mysql_error());
+  $sql = mysql_query("UPDATE Countries SET name='".$_POST["name"]."', code='".$_POST["code"]."' , curr_value='".$_POST["curr_value"]."' , curr_full='".$_POST["curr_full"]."' , curr_short='".$_POST["curr_short"]."' , flag='".$_POST["flag"]."' WHERE code='".$_POST["code"]."'") or die (mysql_error());
 
   $query = mysql_query($sql);
 
@@ -63,12 +63,12 @@ public function update ($country){
     //throw an error (country already exists)
   }else {
     $sql = "INSERT INTO MyGuests (code , name , value , curr_full , curr_short , flag)
-    VALUES ($country_array["code"], $country_array["name"], $country_array["value"],$country_array["curr_full"],$country_array["curr_short"],$country_array["flag"])";
+    VALUES (".$country_array["code"].", ".$country_array["name"].", ".$country_array["value"].",".$country_array["curr_full"].",".$country_array["curr_short"].",".$country_array["flag"].")";
   }
 
 private function GetCurrency ($c)
 {
-  $json = file_get_contents('http://devel.farebookings.com/api/curconversor/USD/'+$c+'/1/json');
+  $json = file_get_contents('http://devel.farebookings.com/api/curconversor/USD/'.$c.'/1/json');
 
   $data = json_decode($json,true);
 
@@ -82,7 +82,7 @@ public function UpdateCurrency ($c) {
 
   $val = $this->GetCurrency($c);
 
-  $sql = mysql_query("UPDATE Countries SET  value='"+$val+"' WHERE code LIKE '%".$c."%'") or die (mysql_error());
+  $sql = mysql_query("UPDATE Countries SET  value='".$val."' WHERE code LIKE '%".$c."%'") or die (mysql_error());
 
   $query = mysql_query($sql);
 
