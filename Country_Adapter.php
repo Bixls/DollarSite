@@ -28,8 +28,7 @@ public function Create()
 }
 
 public function remove($code) {
-  $sql = mysql_query("DELETE FROM Countries WHERE code = ".$code);
-  $query = mysql_query($sql);
+  $query = mysql_query("DELETE FROM Countries WHERE code = ".$code);
 
   if ($query) {
     //sucess
@@ -42,9 +41,7 @@ public function remove($code) {
 public function Edit()
 {
 
-  $sql = mysql_query("UPDATE Countries SET name='".$_POST["name"]."', code='".$_POST["code"]."' , curr_value='".$_POST["curr_value"]."' , curr_full='".$_POST["curr_full"]."' , curr_short='".$_POST["curr_short"]."' , flag='".$_POST["flag"]."' WHERE code='".$_POST["code"]."'") or die (mysql_error());
-
-  $query = mysql_query($sql);
+  $query = mysql_query("UPDATE Countries SET name='".$_POST["name"]."', code='".$_POST["code"]."' , curr_value='".$_POST["curr_value"]."' , curr_full='".$_POST["curr_full"]."' , curr_short='".$_POST["curr_short"]."' , flag='".$_POST["flag"]."' WHERE code='".$_POST["code"]."'") or die (mysql_error());
 
   if (!$query)
   {
@@ -94,9 +91,7 @@ public function UpdateCurrency ($c) {
 
 public function GetCurrencies () {
 
-  $result = mysql_query("SELECT * FROM Countries");
-
-  $query = mysql_query($result);  
+  $query = mysql_query("SELECT * FROM Countries");
 
   $i=0;
 
@@ -122,6 +117,34 @@ public function UpdateCurrencies () {
     $this->UpdateCurrency($country);
 
   }
+}
+
+public function RelateCurrencies ($c) {
+
+  $sql = mysql_query("SELECT * FROM Countries WHERE code LIKE '%".$c."%'");
+
+  $result = mysql_fetch_assoc($query);
+
+  $query = mysql_query("SELECT * FROM Countries");
+
+  $i=0;
+
+  $ref_val = floatval($row['value']);
+
+  while ($row = mysql_fetch_assoc($query)) {
+
+    array $countries = array();
+
+    $val = floatval($row['value']);
+
+    $countries[$row['code']]=$val/$ref_val;
+
+    $i++;
+
+  }
+
+  return $countries;
+
 }
 }
 
