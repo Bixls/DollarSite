@@ -1,6 +1,5 @@
 <?php
-require_once ("configuration.php");
-public class DatabaseConnect
+class DatabaseConnect
 {
 	
 function __construct()

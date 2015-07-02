@@ -12,7 +12,7 @@ class Country {
     $this->value=1;
     }
 
-    public function __construct($c) {
+    public function create($c) {
     	$sql = mysql_query("SELECT * FROM Countries WHERE code LIKE '%".$c."%'") or die (mysql_error());
     	$query = mysql_query($sql);
     	$this->code=$c;
@@ -39,7 +39,7 @@ class Country {
     }
 
     public function getCountry() {
-        array $data = array();
+        $data = array();
         $data['name']=$this->name;
         $data['code']=$this->code;
         $data['value']=$this->value;
