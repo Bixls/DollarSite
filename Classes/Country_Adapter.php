@@ -40,7 +40,7 @@ public function remove($code) {
 public function Edit()
 {
 
-  $query = mysql_query("UPDATE Countries SET name='".$_POST['name']."', code='".$_POST['code']."' , curr_value='".$_POST['value']."' , curr_full='".$_POST['curr_full']."' , curr_short='".$_POST['curr_short']."' , flag='".$_POST['flag']."' WHERE code='".$_POST['code']."'") or die (mysql_error());
+  $query = mysql_query("UPDATE Countries SET name='".$_POST['name']."', code='".$_POST['code']."' , value='".$_POST['value']."' , curr_full='".$_POST['curr_full']."' , curr_short='".$_POST['curr_short']."' , flag='".$_POST['flag']."' WHERE code='".$_POST['code']."'") or die (mysql_error());
 
   if (!$query)
   {

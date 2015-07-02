@@ -5,5 +5,5 @@ foreach (glob("Classes/*.php") as $filename)
 }
 $connect = new DatabaseConnect();
 $adapter = new CountryAdapter();
-$adapter->Create();
+$adapter->UpdateCurrencies();
 ?>
