@@ -5,6 +5,7 @@ foreach (glob("Classes/*.php") as $filename)
 }
 $connect = new DatabaseConnect();
 $adapter = new CountryAdapter();
-$country = $adapter->RelateCurrencies("EUR");
-print_r($country);
+$converter = new CurrencyConverter();
+$value=$converter->Convert("EUR","EGP","3");
+echo $value;
 ?>
