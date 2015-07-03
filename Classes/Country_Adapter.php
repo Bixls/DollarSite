@@ -140,7 +140,9 @@ public function RelateCurrencies ($c) {
 
     $val = floatval($row['value']);
 
-    $countries[$row['code']]=$val/$ref_val;
+    $operation=$val/$ref_val;
+
+    $countries[$row['code']]= round($operation, 4);
 
     $i++;
 

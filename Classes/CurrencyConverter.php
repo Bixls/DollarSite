@@ -26,6 +26,8 @@ $result = mysql_fetch_assoc($sql2);
 
 $value = floatval($amount)*(floatval($result['value'])/floatval($row['value']));
 
+$value= round($value, 4);
+
 return $value;
 
 }
