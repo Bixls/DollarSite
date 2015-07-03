@@ -126,17 +126,17 @@ public function RelateCurrencies ($c) {
 
   $sql = mysql_query("SELECT * FROM Countries WHERE code LIKE '%".$c."%'");
 
-  $result = mysql_fetch_assoc($query);
+  $result = mysql_fetch_assoc($sql);
 
   $query = mysql_query("SELECT * FROM Countries");
 
+  $countries = array();
+
   $i=0;
 
-  $ref_val = floatval($row['value']);
+  $ref_val = floatval($result['value']);
 
   while ($row = mysql_fetch_assoc($query)) {
-
-    $countries = array();
 
     $val = floatval($row['value']);
 
