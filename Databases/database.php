@@ -1,6 +1,8 @@
 <?php
 require_once ("../Classes/DatabaseConnect.php");
 
+require_once ("../Classes/configuration.php");
+
 $connect = new DatabaseConnect();
 
 $sql = "CREATE TABLE Countries (code VARCHAR(30) NOT NULL PRIMARY KEY,name VARCHAR(50) NOT NULL,value VARCHAR(30),
