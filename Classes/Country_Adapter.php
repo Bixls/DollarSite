@@ -31,8 +31,10 @@ public function remove($code) {
 
   if ($query) {
     //sucess
+    echo "success";
   }else {
     //throw an error (failed to delete)
+    echo "fail";
   }
 }
 
@@ -92,15 +94,53 @@ public function UpdateCurrency ($c) {
   }
 }
 
+public function GetNames () {
+
+  $query = mysql_query("SELECT * FROM Countries");
+
+  $i=0;
+
+  $names = array();
+
+  while ($row = mysql_fetch_assoc($query)) {
+
+    $countries[$row['code']]=$row['name'];
+
+    $i++;
+
+  }
+
+  return $names;
+}
+
+public function GetNames () {
+
+  $query = mysql_query("SELECT * FROM Countries");
+
+  $i=0;
+
+  $flags = array();
+
+  while ($row = mysql_fetch_assoc($query)) {
+
+    $countries[$row['code']]=$row['flag'];
+
+    $i++;
+
+  }
+
+  return $flags;
+}
+
 public function GetCurrencies () {
 
   $query = mysql_query("SELECT * FROM Countries");
 
   $i=0;
 
-  while ($row = mysql_fetch_assoc($query)) {
+  $countries = array();
 
-    $countries = array();
+  while ($row = mysql_fetch_assoc($query)) {
 
     $countries[$i]=$row['code'];
 
